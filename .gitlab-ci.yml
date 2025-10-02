@@ -3,7 +3,17 @@ services:
     alias: docker
 
 stages:          # List of stages for jobs, and their order of execution
+  - test
   - build
+
+test go:
+  stage: test
+  image: golang:latest
+  script:
+    - cd src
+    - go fmt $(go list ./... |grep -v /vendor/)
+    - go vet $(go list ./... |grep -v /vendor/)
+    - go test -race $(go list ./... |grep -v/vendor/)
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
