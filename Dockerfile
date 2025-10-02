@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM golang:1.24
+FROM golang AS build
 WORKDIR /src
 COPY src /src
 RUN CGO_ENABLED=0 go build -o /server ./server.go
