@@ -1,5 +1,5 @@
 services:
-  - name: docker-stable
+  - name: docker:stable
     alias: docker
 
 stages:          # List of stages for jobs, and their order of execution
